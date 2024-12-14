@@ -18,6 +18,12 @@ import { FeaturesList } from '@/components/features-list';
 import { HowItWorks } from '@/components/how-it-works';
 import { getFormatDetails } from '@/lib/fileHandlers';
 import type { ConversionItem } from '@/lib/types';
+import Clarity from '@microsoft/clarity';
+
+// Make sure to add your actual project id instead of "yourProjectId".
+const projectId = "yourProjectId"
+
+Clarity.init(projectId);
 
 export default function Home() {
   const { toast } = useToast();
