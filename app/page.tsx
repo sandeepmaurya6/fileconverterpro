@@ -19,6 +19,7 @@ import { HowItWorks } from '@/components/how-it-works';
 import { getFormatDetails } from '@/lib/fileHandlers';
 import type { ConversionItem } from '@/lib/types';
 import Clarity from '@microsoft/clarity';
+import Script from 'next/script'
 
 // Make sure to add your actual project id instead of "yourProjectId".
 const projectId = "yourProjectId"
@@ -26,6 +27,11 @@ const projectId = "yourProjectId"
 Clarity.init(projectId);
 
 export default function Home() {
+
+  <Script
+        strategy="afterInteractive"
+        src={`https://www.clarity.ms/tag/pdvicfq93t`}
+      />
   const { toast } = useToast();
   const { conversions, addConversions, clearConversions } = useConversions();
   const [isConverting, setIsConverting] = useState(false);
