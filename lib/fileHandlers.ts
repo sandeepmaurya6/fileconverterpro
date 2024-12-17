@@ -3,7 +3,7 @@ import type { FormatDetails } from '@/lib/types';
 
 export const getMaxFileSize = (format: ConversionFormat): number => {
   return format.includes('mp4') || format.includes('mov')
-    ? 500 * 1024 * 1024 // 500MB for videos
+    ? 2048 * 1024 * 1024 // 500MB for videos
     : 50 * 1024 * 1024; // 50MB for images
 };
 

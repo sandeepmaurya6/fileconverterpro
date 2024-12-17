@@ -29,7 +29,7 @@ export const FORMAT_CATEGORIES = {
   },
   videos: {
     label: 'Videos',
-    maxSizeMB: 500,
+    maxSizeMB: 2000,
     formats: {
       'mp4-to-mp3': {
         label: 'MP4 to MP3',

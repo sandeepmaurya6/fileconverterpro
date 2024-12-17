@@ -59,7 +59,7 @@ export default function Home() {
     }
 
     const maxSize = format.includes('mp4') || format.includes('mov') 
-      ? 500 * 1024 * 1024  // 500MB for videos
+      ? 2048 * 1024 * 1024  // 500MB for videos
       : 50 * 1024 * 1024;  // 50MB for images
 
     const validFiles = files.filter(file => file.size <= maxSize);
@@ -214,7 +214,7 @@ export default function Home() {
                         <X className="h-4 w-4 mr-2" />
                         Clear Files
                       </Button>
-                      <Button
+                      {/* <Button
                         variant="outline"
                         onClick={() => handleFilesDrop([])}
                         disabled={isConverting}
@@ -222,7 +222,7 @@ export default function Home() {
                       >
                         <Upload className="h-4 w-4 mr-2" />
                         Upload More
-                      </Button>
+                      </Button> */}
                       <Button
                         onClick={startConversion}
                         disabled={isConverting}
@@ -252,7 +252,7 @@ export default function Home() {
                         <X className="h-4 w-4 mr-2" />
                         Clear All
                       </Button>
-                      <Button
+                      {/* <Button
                         variant="outline"
                         onClick={() => handleFilesDrop([])}
                         disabled={isConverting}
@@ -260,7 +260,7 @@ export default function Home() {
                       >
                         <Upload className="h-4 w-4 mr-2" />
                         Upload More
-                      </Button>
+                      </Button> */}
                       <Button
                         onClick={handleDownloadAll}
                         disabled={isConverting}
