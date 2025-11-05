@@ -1,9 +1,8 @@
 import './globals.css';
 import { Providers } from './providers';
-import { Inter } from 'next/font/google';
 import { metadata } from './metadata';
-
-const inter = Inter({ subsets: ['latin'] });
+import { StructuredData, websiteSchema } from '@/components/structured-data';
+import { Toaster } from '@/components/ui/toaster';
 
 export { metadata };
 
@@ -14,8 +13,14 @@ export default function RootLayout({
 }) {
   return (
     <html lang="en" suppressHydrationWarning>
-      <body className={inter.className}>
-        <Providers>{children}</Providers>
+      <head>
+        <StructuredData data={websiteSchema} />
+      </head>
+      <body className="font-sans antialiased">
+        <Providers>
+          {children}
+          <Toaster />
+        </Providers>
       </body>
     </html>
   );

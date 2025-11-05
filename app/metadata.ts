@@ -1,7 +1,7 @@
 import { Metadata } from 'next';
 
-const title = 'Free Online File Converter - Convert Images & Videos';
-const description = 'Free online tool to convert and optimize images and videos. Support for WebP, PNG, JPEG, MP4, and MOV files. No signup required, process files directly in your browser.';
+const title = 'FileConverterPro - Free Online File Converter & Optimizer | No Upload Required';
+const description = 'Convert and optimize images & videos instantly in your browser. WebP, PNG, JPEG, MP4, MOV support. No file upload, 100% privacy, batch processing up to 20 files. Completely free forever.';
 
 const keywords = [
   'file converter',
@@ -18,7 +18,12 @@ const keywords = [
   'image compression',
   'video compression',
   'bulk conversion',
-  'batch processing'
+  'batch processing',
+  'browser-based converter',
+  'no upload converter',
+  'privacy-first converter',
+  'offline file converter',
+  'client-side converter'
 ];
 
 export const metadata: Metadata = {
@@ -29,8 +34,9 @@ export const metadata: Metadata = {
     title,
     description,
     type: 'website',
-    siteName: 'File Converter',
+    siteName: 'FileConverterPro',
     locale: 'en_US',
+    url: 'https://fileconverterpro.com',
   },
   twitter: {
     card: 'summary_large_image',
@@ -47,5 +53,8 @@ export const metadata: Metadata = {
       index: true,
       follow: true,
     },
+  },
+  other: {
+    'google-site-verification': 'your-verification-code',
   },
 };
