@@ -28,13 +28,13 @@ export function HowItWorks() {
   ];
 
   return (
-    <section className="py-12">
+    <section className="py-12" aria-labelledby="how-it-works-heading">
       <div className="max-w-3xl mx-auto px-6">
-        <h2 className="text-2xl font-bold text-center mb-8">How It Works</h2>
+        <h2 id="how-it-works-heading" className="text-2xl font-bold text-center mb-8">How It Works</h2>
         <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
           {steps.map((step, index) => (
             <div key={step.title} className="text-center">
-              <div className="w-16 h-16 rounded-full bg-primary/10 flex items-center justify-center mx-auto mb-4">
+              <div className="w-16 h-16 rounded-full bg-primary/10 flex items-center justify-center mx-auto mb-4" aria-hidden="true">
                 <step.icon className="h-7 w-7 text-primary" />
               </div>
               <h3 className="font-semibold mb-2">{step.title}</h3>

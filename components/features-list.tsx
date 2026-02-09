@@ -13,13 +13,13 @@ export function FeaturesList() {
   ];
 
   return (
-    <section className="py-12 bg-slate-50 rounded-2xl">
+    <section className="py-12 bg-slate-50 rounded-2xl" aria-labelledby="features-heading">
       <div className="max-w-3xl mx-auto px-6">
-        <h2 className="text-2xl font-bold text-center mb-8">Key Features</h2>
+        <h2 id="features-heading" className="text-2xl font-bold text-center mb-8">Key Features</h2>
         <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
           {features.map((feature) => (
             <div key={feature} className="flex items-center gap-2">
-              <div className="flex-shrink-0 h-6 w-6 rounded-full bg-primary/10 flex items-center justify-center">
+              <div className="flex-shrink-0 h-6 w-6 rounded-full bg-primary/10 flex items-center justify-center" aria-hidden="true">
                 <Check className="h-4 w-4 text-primary" />
               </div>
               <span className="text-sm text-slate-600">{feature}</span>

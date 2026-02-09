@@ -20,6 +20,7 @@ import { getFormatDetails } from '@/lib/fileHandlers';
 import type { ConversionItem } from '@/lib/types';
 import Clarity from '@microsoft/clarity';
 import Script from 'next/script'
+import { FAQSection } from '@/components/faq-section';
 
 // Make sure to add your actual project id instead of "yourProjectId".
 const projectId = "yourProjectId"
@@ -156,17 +157,17 @@ export default function Home() {
   return (
     <main className="min-h-screen bg-background">
       <div className="max-w-4xl mx-auto p-6 space-y-12">
-        <div className="text-center">
-          <h1 className="text-3xl font-bold mb-4">
-            Free {formatDetails?.label || 'File'} Converter
+        <header className="text-center">
+          <h1 className="text-4xl md:text-5xl font-bold mb-4 text-balance">
+            Free Online File Converter
           </h1>
-          <p className="text-slate-600">
-            Convert, compress, and optimize your files directly in your browser.
+          <p className="text-lg text-slate-600 text-balance max-w-2xl mx-auto">
+            Convert, compress, and optimize your images and videos directly in your browser. 
             No upload limits, no registration required, and your files never leave your device.
           </p>
-        </div>
+        </header>
         
-        <div className="space-y-6">
+        <section className="space-y-6">
           <div className="flex flex-col md:flex-row items-start md:items-center gap-4">
             <FormatSelector
               value={format}
@@ -214,15 +215,6 @@ export default function Home() {
                         <X className="h-4 w-4 mr-2" />
                         Clear Files
                       </Button>
-                      {/* <Button
-                        variant="outline"
-                        onClick={() => handleFilesDrop([])}
-                        disabled={isConverting}
-                        className="min-w-[120px]"
-                      >
-                        <Upload className="h-4 w-4 mr-2" />
-                        Upload More
-                      </Button> */}
                       <Button
                         onClick={startConversion}
                         disabled={isConverting}
@@ -252,15 +244,6 @@ export default function Home() {
                         <X className="h-4 w-4 mr-2" />
                         Clear All
                       </Button>
-                      {/* <Button
-                        variant="outline"
-                        onClick={() => handleFilesDrop([])}
-                        disabled={isConverting}
-                        className="min-w-[120px]"
-                      >
-                        <Upload className="h-4 w-4 mr-2" />
-                        Upload More
-                      </Button> */}
                       <Button
                         onClick={handleDownloadAll}
                         disabled={isConverting}
@@ -296,10 +279,11 @@ export default function Home() {
               )}
             </div>
           )}
-        </div>
+        </section>
 
         <FeaturesList />
         <HowItWorks />
+        <FAQSection />
       </div>
     </main>
   );
