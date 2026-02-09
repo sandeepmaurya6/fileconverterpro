@@ -33,7 +33,6 @@ export default function Home() {
     }
   }, []);
 
-export default function Home() {
   const { toast } = useToast();
   const { conversions, addConversions, clearConversions } = useConversions();
   const [isConverting, setIsConverting] = useState(false);
