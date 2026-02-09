@@ -28,11 +28,6 @@ const projectId = "yourProjectId"
 Clarity.init(projectId);
 
 export default function Home() {
-
-  <Script
-        strategy="afterInteractive"
-        src={`https://www.clarity.ms/tag/pdvicfq93t`}
-      />
   const { toast } = useToast();
   const { conversions, addConversions, clearConversions } = useConversions();
   const [isConverting, setIsConverting] = useState(false);
@@ -156,6 +151,10 @@ export default function Home() {
 
   return (
     <main className="min-h-screen bg-background">
+      <Script
+        strategy="afterInteractive"
+        src={`https://www.clarity.ms/tag/pdvicfq93t`}
+      />
       <div className="max-w-4xl mx-auto p-6 space-y-12">
         <header className="text-center">
           <h1 className="text-4xl md:text-5xl font-bold mb-4 text-balance">
