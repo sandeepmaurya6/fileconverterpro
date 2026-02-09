@@ -89,9 +89,9 @@ export function FAQSection() {
         type="application/ld+json"
         dangerouslySetInnerHTML={{ __html: JSON.stringify(faqSchema) }}
       />
-      <section className="py-12">
+      <section className="py-12" aria-labelledby="faq-heading">
         <div className="max-w-3xl mx-auto px-6">
-          <h2 className="text-3xl font-bold text-center mb-2">Frequently Asked Questions</h2>
+          <h2 id="faq-heading" className="text-3xl font-bold text-center mb-2">Frequently Asked Questions</h2>
           <p className="text-center text-slate-600 mb-8">Find answers to common questions about our file converter</p>
           
           <div className="space-y-4">

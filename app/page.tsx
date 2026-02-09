@@ -1,6 +1,6 @@
 'use client';
 
-import { useState, useMemo } from 'react';
+import { useState, useMemo, useEffect } from 'react';
 import { Dropzone } from '@/components/ui/dropzone';
 import { ConversionList } from '@/components/conversion-list';
 import { convertFile } from '@/lib/converters';
@@ -8,9 +8,9 @@ import { FormatSelector } from '@/components/converter/format-selector';
 import { OptimizationSettings } from '@/components/converter/optimization-settings';
 import { useConversions } from '@/hooks/use-conversions';
 import { Button } from '@/components/ui/button';
-import { Download, Loader2, Play, Upload, X } from 'lucide-react';
+import { Download, Loader2, Play, X } from 'lucide-react';
 import { truncateFilename } from '@/lib/utils';
-import { FORMAT_CATEGORIES, type ConversionFormat } from '@/lib/constants';
+import type { ConversionFormat } from '@/lib/constants';
 import { useToast } from '@/hooks/use-toast';
 import { saveAs } from 'file-saver';
 import JSZip from 'jszip';
@@ -18,14 +18,20 @@ import { FeaturesList } from '@/components/features-list';
 import { HowItWorks } from '@/components/how-it-works';
 import { getFormatDetails } from '@/lib/fileHandlers';
 import type { ConversionItem } from '@/lib/types';
-import Clarity from '@microsoft/clarity';
-import Script from 'next/script'
 import { FAQSection } from '@/components/faq-section';
 
-// Make sure to add your actual project id instead of "yourProjectId".
-const projectId = "yourProjectId"
-
-Clarity.init(projectId);
+export default function Home() {
+  useEffect(() => {
+    // Initialize Clarity only on client side
+    if (typeof window !== 'undefined') {
+      try {
+        const Clarity = require('@microsoft/clarity');
+        Clarity.init('pdvicfq93t');
+      } catch (error) {
+        console.log('[v0] Clarity initialization skipped');
+      }
+    }
+  }, []);
 
 export default function Home() {
   const { toast } = useToast();
@@ -151,10 +157,6 @@ export default function Home() {
 
   return (
     <main className="min-h-screen bg-background">
-      <Script
-        strategy="afterInteractive"
-        src={`https://www.clarity.ms/tag/pdvicfq93t`}
-      />
       <div className="max-w-4xl mx-auto p-6 space-y-12">
         <header className="text-center">
           <h1 className="text-4xl md:text-5xl font-bold mb-4 text-balance">
