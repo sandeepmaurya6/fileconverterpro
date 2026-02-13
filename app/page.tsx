@@ -37,7 +37,7 @@ export default function Home() {
   const [isConverting, setIsConverting] = useState(false);
   const [pendingFiles, setPendingFiles] = useState<File[]>([]);
   const [progress, setProgress] = useState(0);
-  const [format, setFormat] = useState<ConversionFormat>('webp-to-png');
+  const [format, setFormat] = useState<ConversionFormat>('png-to-webp');
   const [targetSizeKB, setTargetSizeKB] = useState<number>(100);
 
   const hasPendingFiles = useMemo(() => pendingFiles.length > 0, [pendingFiles]);
