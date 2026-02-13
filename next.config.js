@@ -5,8 +5,9 @@ const nextConfig = {
     ignoreDuringBuilds: true,
   },
   images: { unoptimized: true },
-  experimental: {
-    esmExternals: true,
+  onDemandEntries: {
+    maxInactiveAge: 60 * 1000,
+    maxSize: 50 * 1024 * 1024,
   },
 };
 
