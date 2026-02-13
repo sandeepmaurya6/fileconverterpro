@@ -1,24 +1,29 @@
 import { Metadata } from 'next';
 
-const title = 'Free Online File Converter - Convert Images & Videos';
-const description = 'Free online tool to convert and optimize images and videos. Support for WebP, PNG, JPEG, MP4, and MOV files. No signup required, process files directly in your browser.';
+const title = 'Free File Converter - PNG to WebP, Image & Video Conversion Online';
+const description = 'Convert PNG to WebP, JPEG, and more with our free online file converter. Batch convert up to 20 files instantly. No registration required, 100% secure client-side processing. Convert images and videos directly in your browser.';
 
 const keywords = [
   'file converter',
   'image converter',
+  'PNG to WebP converter',
+  'WebP to PNG',
+  'JPEG converter',
   'video converter',
-  'webp to png',
-  'png to webp',
-  'png optimizer',
-  'jpeg optimizer',
-  'mp4 to mp3',
-  'mov to mp4',
+  'MP4 converter',
+  'free file converter',
   'online converter',
-  'free converter',
   'image compression',
   'video compression',
+  'batch converter',
   'bulk conversion',
-  'batch processing'
+  'format converter',
+  'image optimization',
+  'file compression',
+  'convert images online',
+  'convert videos online',
+  'free online converter',
+  'webp compression',
 ];
 
 export const metadata: Metadata = {
@@ -29,8 +34,16 @@ export const metadata: Metadata = {
     title,
     description,
     type: 'website',
-    siteName: 'File Converter',
+    siteName: 'File Converter Pro',
     locale: 'en_US',
+    images: [
+      {
+        url: '/og-image.png',
+        width: 1200,
+        height: 630,
+        alt: 'File Converter Pro - Convert files online for free',
+      },
+    ],
   },
   twitter: {
     card: 'summary_large_image',
@@ -46,6 +59,9 @@ export const metadata: Metadata = {
     googleBot: {
       index: true,
       follow: true,
+      'max-snippet': -1,
+      'max-image-preview': 'large',
+      'max-video-preview': -1,
     },
   },
 };

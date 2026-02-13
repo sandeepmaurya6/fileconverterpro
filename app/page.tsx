@@ -16,6 +16,10 @@ import { saveAs } from 'file-saver';
 import JSZip from 'jszip';
 import { FeaturesList } from '@/components/features-list';
 import { HowItWorks } from '@/components/how-it-works';
+import { HeroSection } from '@/components/hero-section';
+import { BenefitsSection } from '@/components/benefits-section';
+import { ComparisonSection } from '@/components/comparison-section';
+import { FAQSection } from '@/components/faq-section';
 import { getFormatDetails } from '@/lib/fileHandlers';
 import type { ConversionItem } from '@/lib/types';
 import Clarity from '@microsoft/clarity';
@@ -155,152 +159,132 @@ export default function Home() {
 
   return (
     <main className="min-h-screen bg-background">
+      <HeroSection />
+      
       <div className="max-w-4xl mx-auto p-6 space-y-12">
-        <div className="text-center">
-          <h1 className="text-3xl font-bold mb-4">
-            Free {formatDetails?.label || 'File'} Converter
-          </h1>
-          <p className="text-slate-600">
-            Convert, compress, and optimize your files directly in your browser.
-            No upload limits, no registration required, and your files never leave your device.
-          </p>
-        </div>
-        
-        <div className="space-y-6">
-          <div className="flex flex-col md:flex-row items-start md:items-center gap-4">
-            <FormatSelector
-              value={format}
-              onChange={(newFormat) => {
-                setFormat(newFormat);
-                setPendingFiles([]);
-                clearConversions();
-              }}
-              disabled={isConverting || hasPendingFiles}
-            />
-            
-            {(format === 'png-optimize' || format === 'jpeg-optimize') && (
-              <OptimizationSettings
-                onTargetSizeChange={setTargetSizeKB}
-                disabled={isConverting}
+        <section id="converter" className="scroll-mt-20">
+          <div className="space-y-6">
+            <div className="flex flex-col md:flex-row items-start md:items-center gap-4">
+              <FormatSelector
+                value={format}
+                onChange={(newFormat) => {
+                  setFormat(newFormat);
+                  setPendingFiles([]);
+                  clearConversions();
+                }}
+                disabled={isConverting || hasPendingFiles}
               />
-            )}
-          </div>
-
-          {!hasPendingFiles && !conversions.length && formatDetails && (
-            <Dropzone
-              onFilesDrop={handleFilesDrop}
-              className="transition-all duration-200 hover:border-primary/50"
-              disabled={isConverting}
-              accept={formatDetails.accept}
-              text={formatDetails.dropzoneText}
-            />
-          )}
-
-          {(hasPendingFiles || conversions.length > 0) && (
-            <div className="space-y-6">
-              <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-4">
-                <h2 className="text-lg font-semibold">
-                  {hasPendingFiles ? 'Selected Files' : 'Conversions'}
-                </h2>
-                <div className="flex flex-wrap gap-2">
-                  {hasPendingFiles ? (
-                    <>
-                      <Button
-                        variant="outline"
-                        onClick={clearFiles}
-                        disabled={isConverting}
-                        className="min-w-[120px]"
-                      >
-                        <X className="h-4 w-4 mr-2" />
-                        Clear Files
-                      </Button>
-                      {/* <Button
-                        variant="outline"
-                        onClick={() => handleFilesDrop([])}
-                        disabled={isConverting}
-                        className="min-w-[120px]"
-                      >
-                        <Upload className="h-4 w-4 mr-2" />
-                        Upload More
-                      </Button> */}
-                      <Button
-                        onClick={startConversion}
-                        disabled={isConverting}
-                        className="min-w-[160px] bg-blue-600 hover:bg-blue-700"
-                      >
-                        {isConverting ? (
-                          <>
-                            <Loader2 className="h-4 w-4 animate-spin mr-2" />
-                            {progress}%
-                          </>
-                        ) : (
-                          <>
-                            <Play className="h-4 w-4 mr-2" />
-                            Start Conversion
-                          </>
-                        )}
-                      </Button>
-                    </>
-                  ) : hasCompletedConversions && (
-                    <>
-                      <Button
-                        variant="outline"
-                        onClick={clearConversions}
-                        disabled={isConverting}
-                        className="min-w-[120px]"
-                      >
-                        <X className="h-4 w-4 mr-2" />
-                        Clear All
-                      </Button>
-                      {/* <Button
-                        variant="outline"
-                        onClick={() => handleFilesDrop([])}
-                        disabled={isConverting}
-                        className="min-w-[120px]"
-                      >
-                        <Upload className="h-4 w-4 mr-2" />
-                        Upload More
-                      </Button> */}
-                      <Button
-                        onClick={handleDownloadAll}
-                        disabled={isConverting}
-                        className="min-w-[160px] bg-blue-600 hover:bg-blue-700"
-                      >
-                        <Download className="h-4 w-4 mr-2" />
-                        Download All
-                      </Button>
-                    </>
-                  )}
-                </div>
-              </div>
               
-              {hasPendingFiles ? (
-                <div className="space-y-2">
-                  {pendingFiles.map((file) => (
-                    <div
-                      key={file.name}
-                      className="flex items-center justify-between p-4 bg-muted/50 rounded-lg border border-border/50"
-                    >
-                      <div className="flex items-center space-x-4">
-                        <div className="flex-1 min-w-0">
-                          <p className="text-sm font-medium text-foreground/90">
-                            {truncateFilename(file.name)}
-                          </p>
-                        </div>
-                      </div>
-                    </div>
-                  ))}
-                </div>
-              ) : (
-                <ConversionList items={conversions} />
+              {(format === 'png-optimize' || format === 'jpeg-optimize') && (
+                <OptimizationSettings
+                  onTargetSizeChange={setTargetSizeKB}
+                  disabled={isConverting}
+                />
               )}
             </div>
-          )}
-        </div>
 
-        <FeaturesList />
+            {!hasPendingFiles && !conversions.length && formatDetails && (
+              <Dropzone
+                onFilesDrop={handleFilesDrop}
+                className="transition-all duration-200 hover:border-primary/50"
+                disabled={isConverting}
+                accept={formatDetails.accept}
+                text={formatDetails.dropzoneText}
+              />
+            )}
+
+            {(hasPendingFiles || conversions.length > 0) && (
+              <div className="space-y-6">
+                <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-4">
+                  <h2 className="text-lg font-semibold">
+                    {hasPendingFiles ? 'Selected Files' : 'Conversions'}
+                  </h2>
+                  <div className="flex flex-wrap gap-2">
+                    {hasPendingFiles ? (
+                      <>
+                        <Button
+                          variant="outline"
+                          onClick={clearFiles}
+                          disabled={isConverting}
+                          className="min-w-[120px]"
+                        >
+                          <X className="h-4 w-4 mr-2" />
+                          Clear Files
+                        </Button>
+                        <Button
+                          onClick={startConversion}
+                          disabled={isConverting}
+                          className="min-w-[160px] bg-primary hover:bg-primary/90"
+                        >
+                          {isConverting ? (
+                            <>
+                              <Loader2 className="h-4 w-4 animate-spin mr-2" />
+                              {progress}%
+                            </>
+                          ) : (
+                            <>
+                              <Play className="h-4 w-4 mr-2" />
+                              Start Conversion
+                            </>
+                          )}
+                        </Button>
+                      </>
+                    ) : hasCompletedConversions && (
+                      <>
+                        <Button
+                          variant="outline"
+                          onClick={clearConversions}
+                          disabled={isConverting}
+                          className="min-w-[120px]"
+                        >
+                          <X className="h-4 w-4 mr-2" />
+                          Clear All
+                        </Button>
+                        <Button
+                          onClick={handleDownloadAll}
+                          disabled={isConverting}
+                          className="min-w-[160px] bg-primary hover:bg-primary/90"
+                        >
+                          <Download className="h-4 w-4 mr-2" />
+                          Download All
+                        </Button>
+                      </>
+                    )}
+                  </div>
+                </div>
+                
+                {hasPendingFiles ? (
+                  <div className="space-y-2">
+                    {pendingFiles.map((file) => (
+                      <div
+                        key={file.name}
+                        className="flex items-center justify-between p-4 bg-muted/50 rounded-lg border border-border/50"
+                      >
+                        <div className="flex items-center space-x-4">
+                          <div className="flex-1 min-w-0">
+                            <p className="text-sm font-medium text-foreground/90">
+                              {truncateFilename(file.name)}
+                            </p>
+                          </div>
+                        </div>
+                      </div>
+                    ))}
+                  </div>
+                ) : (
+                  <ConversionList items={conversions} />
+                )}
+              </div>
+            )}
+          </div>
+        </section>
+
         <HowItWorks />
       </div>
+
+      <BenefitsSection />
+      <FeaturesList />
+      <ComparisonSection />
+      <FAQSection />
     </main>
   );
 }
