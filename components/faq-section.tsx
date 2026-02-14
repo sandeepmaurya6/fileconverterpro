@@ -11,32 +11,32 @@ export function FAQSection() {
     {
       question: 'Is the file converter really free?',
       answer:
-        'Yes, completely free! We believe in providing quality tools without hidden fees or premium subscriptions. Convert unlimited files without any cost or registration required.',
+        'Yes, completely free! We provide unlimited file conversions without any registration, hidden fees, or premium plans.',
     },
     {
-      question: 'How does PNG to WebP conversion improve my images?',
+      question: 'How does PNG to WebP conversion save space?',
       answer:
-        'WebP format typically reduces file sizes by 25-35% compared to PNG while maintaining the same visual quality. Smaller files mean faster loading times and better performance for your website or application.',
+        'WebP format uses advanced compression techniques that typically reduce file sizes by 25-35% compared to PNG while maintaining excellent visual quality.',
     },
     {
-      question: 'Will my files be uploaded to your servers?',
+      question: 'Where are my files stored?',
       answer:
-        'No, your files never leave your device. All conversions happen locally in your browser using client-side processing. Your privacy and security are our top priority.',
+        'Your files never leave your device. All conversions happen locally in your browser using client-side processing. We do not upload or store any files.',
     },
     {
-      question: 'What formats are supported?',
+      question: 'What image and video formats are supported?',
       answer:
-        'We support PNG, WebP, JPEG, GIF, BMP, TIFF, MP4, MOV, MP3, WAV, AAC, and many more formats. You can convert between most common image and video formats.',
+        'We support PNG, WebP, JPEG, GIF, BMP, TIFF, MP4, MOV, MP3, WAV, AAC, and many more. You can convert between virtually any common format.',
     },
     {
       question: 'Can I convert multiple files at once?',
       answer:
-        'Absolutely! You can batch process up to 20 files simultaneously, saving you time and effort compared to converting files one by one.',
+        'Absolutely! Our batch processing feature allows you to convert up to 20 files simultaneously, saving you significant time.',
     },
     {
-      question: 'Is the converter mobile-friendly?',
+      question: 'Does it work on mobile devices?',
       answer:
-        'Yes, our converter works seamlessly on desktop, tablet, and mobile devices. Use it anywhere with any modern web browser.',
+        'Yes, our converter works seamlessly on desktop, tablet, and mobile devices. Any modern web browser will work perfectly.',
     },
   ];
 
@@ -60,7 +60,7 @@ export function FAQSection() {
   };
 
   return (
-    <section className="py-16 md:py-24 px-6 md:px-8">
+    <section className="py-16 md:py-24 px-6 md:px-8 bg-gradient-to-b from-background to-secondary/5">
       <div className="max-w-3xl mx-auto">
         <motion.div
           className="text-center mb-12 md:mb-16"
@@ -73,7 +73,7 @@ export function FAQSection() {
             Frequently Asked Questions
           </h2>
           <p className="text-muted-foreground text-lg">
-            Everything you need to know about our file converter
+            Have questions? We have answers
           </p>
         </motion.div>
 
@@ -88,12 +88,12 @@ export function FAQSection() {
             <motion.div key={index} variants={itemVariants}>
               <button
                 onClick={() => setOpenIndex(openIndex === index ? null : index)}
-                className="w-full text-left p-4 md:p-6 border border-border rounded-lg hover:border-primary/30 transition-colors bg-card"
+                className="w-full text-left p-4 md:p-6 border border-border rounded-lg hover:border-primary/50 transition-colors bg-card"
               >
                 <div className="flex items-center justify-between gap-4">
                   <span className="font-semibold text-sm md:text-base">{faq.question}</span>
                   <ChevronDown
-                    className={`h-5 w-5 flex-shrink-0 text-primary transition-transform ${
+                    className={`h-5 w-5 flex-shrink-0 text-primary transition-transform duration-300 ${
                       openIndex === index ? 'rotate-180' : ''
                     }`}
                   />

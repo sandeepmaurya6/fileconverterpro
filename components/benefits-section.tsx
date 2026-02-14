@@ -1,54 +1,53 @@
 'use client';
 
 import { motion } from 'framer-motion';
-import { CheckCircle2, FileSize, Zap, BarChart3 } from 'lucide-react';
+import { CheckCircle2, Zap, BarChart3, Lock } from 'lucide-react';
 
 export function BenefitsSection() {
+  const benefits = [
+    {
+      icon: CheckCircle2,
+      title: 'Unlimited Conversions',
+      description: 'Convert as many files as you want with no limits or hidden fees',
+    },
+    {
+      icon: Zap,
+      title: '25-35% Smaller Files',
+      description: 'Reduce file size significantly using modern compression techniques',
+    },
+    {
+      icon: BarChart3,
+      title: 'Batch Processing',
+      description: 'Convert up to 20 files simultaneously to save your time',
+    },
+    {
+      icon: Lock,
+      title: '100% Private & Secure',
+      description: 'All processing happens locally in your browser, nothing uploaded',
+    },
+  ];
+
   const containerVariants = {
     hidden: { opacity: 0 },
     visible: {
       opacity: 1,
       transition: {
-        staggerChildren: 0.15,
-        delayChildren: 0.1,
+        staggerChildren: 0.1,
       },
     },
   };
 
   const itemVariants = {
-    hidden: { opacity: 0, x: -20 },
+    hidden: { opacity: 0, y: 10 },
     visible: {
       opacity: 1,
-      x: 0,
-      transition: { duration: 0.5 },
+      y: 0,
+      transition: { duration: 0.4 },
     },
   };
 
-  const benefits = [
-    {
-      icon: CheckCircle2,
-      title: 'Free & Unlimited',
-      description: 'Convert as many files as you need without hidden fees or limitations',
-    },
-    {
-      icon: FileSize,
-      title: 'Smart Compression',
-      description: 'Reduce file size by up to 80% while maintaining quality with WebP conversion',
-    },
-    {
-      icon: Zap,
-      title: 'Batch Processing',
-      description: 'Convert up to 20 files simultaneously to save time and effort',
-    },
-    {
-      icon: BarChart3,
-      title: 'Format Support',
-      description: 'Support for PNG, WebP, JPEG, MP4, MOV, MP3 and many more formats',
-    },
-  ];
-
   return (
-    <section className="py-16 md:py-24 px-6 md:px-8">
+    <section className="py-16 md:py-24 px-6 md:px-8 bg-gradient-to-b from-background to-secondary/5">
       <div className="max-w-5xl mx-auto">
         <motion.div
           className="text-center mb-12 md:mb-16"
@@ -58,10 +57,10 @@ export function BenefitsSection() {
           viewport={{ once: true }}
         >
           <h2 className="text-3xl md:text-4xl font-bold mb-4 text-balance">
-            Why Choose Our File Converter?
+            Why Choose Our Converter?
           </h2>
           <p className="text-muted-foreground text-lg max-w-2xl mx-auto">
-            We provide the most reliable and user-friendly file conversion experience available online
+            Fast, secure, and reliable file conversion that respects your privacy
           </p>
         </motion.div>
 
@@ -72,25 +71,28 @@ export function BenefitsSection() {
           whileInView="visible"
           viewport={{ once: true }}
         >
-          {benefits.map((benefit) => (
-            <motion.div
-              key={benefit.title}
-              variants={itemVariants}
-              className="p-6 md:p-8 rounded-xl bg-gradient-to-br from-primary/5 to-transparent border border-primary/10 hover:border-primary/30 transition-all"
-            >
-              <div className="flex items-start gap-4">
-                <div className="p-2 rounded-lg bg-primary/10">
-                  <benefit.icon className="h-5 w-5 text-primary flex-shrink-0" />
+          {benefits.map((benefit) => {
+            const Icon = benefit.icon;
+            return (
+              <motion.div
+                key={benefit.title}
+                variants={itemVariants}
+                className="p-6 md:p-8 rounded-xl bg-card border border-border hover:border-primary/30 transition-colors"
+              >
+                <div className="flex gap-4">
+                  <div className="p-3 rounded-lg bg-primary/10 h-fit">
+                    <Icon className="h-6 w-6 text-primary" />
+                  </div>
+                  <div className="flex-1">
+                    <h3 className="font-semibold text-lg mb-2">{benefit.title}</h3>
+                    <p className="text-muted-foreground text-sm md:text-base">
+                      {benefit.description}
+                    </p>
+                  </div>
                 </div>
-                <div>
-                  <h3 className="font-semibold text-lg mb-2">{benefit.title}</h3>
-                  <p className="text-muted-foreground text-sm md:text-base">
-                    {benefit.description}
-                  </p>
-                </div>
-              </div>
-            </motion.div>
-          ))}
+              </motion.div>
+            );
+          })}
         </motion.div>
       </div>
     </section>
