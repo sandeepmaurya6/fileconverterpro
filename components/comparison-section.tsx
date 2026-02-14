@@ -57,47 +57,44 @@ export function ComparisonSection() {
           transition={{ duration: 0.6 }}
           viewport={{ once: true }}
         >
-          <table className="w-full">
+          <table className="w-full border-collapse">
             <thead>
-              <tr className="border-b border-border">
-                <th className="text-left py-4 px-4 font-semibold">Feature</th>
-                <th className="text-center py-4 px-4 font-semibold text-primary">Our Tool</th>
-                <th className="text-center py-4 px-4 font-semibold text-muted-foreground">
+              <tr className="border-b-2 border-border">
+                <th className="text-left py-4 px-4 font-semibold text-base">Feature</th>
+                <th className="text-center py-4 px-4 font-semibold text-primary text-base w-32">Our Tool</th>
+                <th className="text-center py-4 px-4 font-semibold text-muted-foreground text-base w-32">
                   Others
                 </th>
               </tr>
             </thead>
             <tbody>
-              <motion.tbody
-                variants={containerVariants}
-                initial="hidden"
-                whileInView="visible"
-                viewport={{ once: true }}
-              >
-                {features.map((feature, index) => (
-                  <motion.tr
-                    key={index}
-                    variants={itemVariants}
-                    className="border-b border-border/50 hover:bg-muted/50 transition-colors"
-                  >
-                    <td className="py-4 px-4 text-sm md:text-base">{feature.name}</td>
-                    <td className="py-4 px-4 text-center">
-                      {feature.ours ? (
-                        <Check className="h-5 w-5 text-green-500 mx-auto" />
-                      ) : (
-                        <X className="h-5 w-5 text-red-500 mx-auto" />
-                      )}
-                    </td>
-                    <td className="py-4 px-4 text-center">
-                      {feature.others ? (
-                        <Check className="h-5 w-5 text-green-500 mx-auto" />
-                      ) : (
-                        <X className="h-5 w-5 text-red-500 mx-auto" />
-                      )}
-                    </td>
-                  </motion.tr>
-                ))}
-              </motion.tbody>
+              {features.map((feature, index) => (
+                <motion.tr
+                  key={index}
+                  variants={itemVariants}
+                  initial="hidden"
+                  whileInView="visible"
+                  viewport={{ once: true }}
+                  transition={{ delay: index * 0.05 }}
+                  className="border-b border-border/50 hover:bg-muted/30 transition-colors"
+                >
+                  <td className="py-4 px-4 text-sm md:text-base font-medium">{feature.name}</td>
+                  <td className="py-4 px-4 text-center">
+                    {feature.ours ? (
+                      <Check className="h-5 w-5 text-green-500 mx-auto inline-block" />
+                    ) : (
+                      <X className="h-5 w-5 text-red-500 mx-auto inline-block" />
+                    )}
+                  </td>
+                  <td className="py-4 px-4 text-center">
+                    {feature.others ? (
+                      <Check className="h-5 w-5 text-green-500 mx-auto inline-block" />
+                    ) : (
+                      <X className="h-5 w-5 text-red-500 mx-auto inline-block" />
+                    )}
+                  </td>
+                </motion.tr>
+              ))}
             </tbody>
           </table>
         </motion.div>
