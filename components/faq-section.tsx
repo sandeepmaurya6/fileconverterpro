@@ -1,9 +1,12 @@
 'use client';
 
 import { motion } from 'framer-motion';
-import { Accordion, AccordionContent, AccordionItem, AccordionTrigger } from '@/components/ui/accordion';
+import { ChevronDown } from 'lucide-react';
+import { useState } from 'react';
 
 export function FAQSection() {
+  const [openIndex, setOpenIndex] = useState<number | null>(0);
+
   const faqs = [
     {
       question: 'Is the file converter really free?',
@@ -75,25 +78,39 @@ export function FAQSection() {
         </motion.div>
 
         <motion.div
+          className="space-y-3"
           variants={containerVariants}
           initial="hidden"
           whileInView="visible"
           viewport={{ once: true }}
         >
-          <Accordion type="single" collapsible className="w-full">
-            {faqs.map((faq, index) => (
-              <motion.div key={index} variants={itemVariants}>
-                <AccordionItem value={`item-${index}`} className="border border-border rounded-lg mb-3 px-6">
-                  <AccordionTrigger className="text-left hover:text-primary transition-colors py-4 md:py-5">
-                    <span className="font-semibold text-sm md:text-base">{faq.question}</span>
-                  </AccordionTrigger>
-                  <AccordionContent className="text-muted-foreground text-sm md:text-base pb-4 md:pb-5">
+          {faqs.map((faq, index) => (
+            <motion.div key={index} variants={itemVariants}>
+              <button
+                onClick={() => setOpenIndex(openIndex === index ? null : index)}
+                className="w-full text-left p-4 md:p-6 border border-border rounded-lg hover:border-primary/30 transition-colors bg-card"
+              >
+                <div className="flex items-center justify-between gap-4">
+                  <span className="font-semibold text-sm md:text-base">{faq.question}</span>
+                  <ChevronDown
+                    className={`h-5 w-5 flex-shrink-0 text-primary transition-transform ${
+                      openIndex === index ? 'rotate-180' : ''
+                    }`}
+                  />
+                </div>
+                {openIndex === index && (
+                  <motion.div
+                    initial={{ opacity: 0, height: 0 }}
+                    animate={{ opacity: 1, height: 'auto' }}
+                    exit={{ opacity: 0, height: 0 }}
+                    className="mt-4 pt-4 border-t border-border/50 text-muted-foreground text-sm md:text-base"
+                  >
                     {faq.answer}
-                  </AccordionContent>
-                </AccordionItem>
-              </motion.div>
-            ))}
-          </Accordion>
+                  </motion.div>
+                )}
+              </button>
+            </motion.div>
+          ))}
         </motion.div>
       </div>
     </section>
